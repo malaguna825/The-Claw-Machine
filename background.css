@@ -1,0 +1,64 @@
+.main-background{
+  background: url("./images/colorful.png") no-repeat center center fixed;
+  background-size: cover;
+  /* background-repeat:   no-repeat; */
+  /* background-position: center center; */
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  margin: 0 auto;
+  justify-content:center;
+}
+
+.canvas {
+  background: white;
+  display: block;
+  border-radius: 25px;
+  margin: 5% 0;
+}
+
+.fa-github{
+  font-size: 52px;
+  color: #FFFAF0;
+}
+.fa-github:hover{
+  font-size: 65px;
+  color: lightblue;
+}
+
+.links {
+  padding-left: 25px;
+  display: flex;
+  flex-direction: column;
+  min-height: 250px;
+  justify-content: space-between;
+}
+
+.fa-linkedin{
+  font-size: 52px;
+  color: #FFFAF0;
+}
+.fa-linkedin:hover{
+  font-size: 65px;
+  color: lightblue;
+}
+
+.fa-angellist{
+  font-size: 52px;
+  color:#FFFAF0;
+}
+.fa-angellist:hover{
+  font-size: 65px;
+  color: lightblue;
+}
+
+.game-name{
+  position:absolute;
+  padding-top: 950px;
+  font-family: 'Slabo 13px', serif;
+  font-size: 90px;
+  text-align: center;
+  font-weight:bold;
+  color: #ff5b51;
+  text-shadow: 4px 4px 4px white;
+}
