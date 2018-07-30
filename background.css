@@ -1,8 +1,6 @@
 .main-background{
   background: url("./images/colorful.png") no-repeat center center fixed;
   background-size: cover;
-  /* background-repeat:   no-repeat; */
-  /* background-position: center center; */
   display: flex;
   flex-direction: row;
   align-items:center;
@@ -23,7 +21,7 @@
 }
 .fa-github:hover{
   font-size: 65px;
-  color: lightblue;
+  color: #00FFFF
 }
 
 .links {
@@ -40,7 +38,7 @@
 }
 .fa-linkedin:hover{
   font-size: 65px;
-  color: lightblue;
+  color: #00FFFF;
 }
 
 .fa-angellist{
@@ -49,7 +47,7 @@
 }
 .fa-angellist:hover{
   font-size: 65px;
-  color: lightblue;
+  color: #00FFFF;
 }
 
 .game-name{
