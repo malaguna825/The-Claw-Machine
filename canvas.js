@@ -92,6 +92,19 @@ function drawPaddle(){
 }
 
 
+function animate(){
+  requestAnimationFrame(animate);
+  ctx.beginPath();
+  ctx.rect(paddleX,paddleHeight-paddleHeight, paddleWidth, paddleHeight);
+  ctx.fillStyle = "#0095DD";
+  ctx.fill();
+  ctx.closePath();
+}
+
+
+
+
+
 function drawBall(){
   ctx.beginPath();
   ctx.arc(x, y, ballRadius,0,Math.PI*2,false);
