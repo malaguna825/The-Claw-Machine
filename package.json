@@ -1,0 +1,30 @@
+{
+  "name": "Claw_Machine",
+  "version": "1.0.0",
+  "description": "Claw Machine is a JavaScript game.  Each game is 30 seconds long. Within the timeframe the player will try to score as many point as possible by clawing the positive points balls. The game will be over immediately if the player accidentally clawing the bomb.",
+  "main": "canvas.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --watch --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malaguna825/The-Claw-Machine.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/malaguna825/The-Claw-Machine/issues"
+  },
+  "homepage": "https://github.com/malaguna825/The-Claw-Machine#readme",
+  "devDependencies": {
+    "webpack-cli": "^3.1.0"
+  },
+  "dependencies": {
+    "webpack": "^4.16.4"
+  }
+}

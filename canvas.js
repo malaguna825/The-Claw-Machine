@@ -4,6 +4,7 @@ canvas.height = 900;
 
 var ctx = canvas.getContext('2d');
 
+
 var paddleHeight = 50;
 var paddleWidth = 100;
 var paddleX = (canvas.width-paddleWidth)/2;
@@ -55,7 +56,7 @@ function drawLine(){
 function drawMagnet(){
   var pic1 = new Image();
   pic1.src = "./images/magnet.png";
-  ctx.drawImage(pic1, paddleX-42,my+90,canvas.width/17, canvas.height/13);
+  ctx.drawImage(pic1, paddleX-35,my+90,canvas.width/20, canvas.height/13);
   my += dy;
   if(my+dy< 0){
     dy = 0;
@@ -71,6 +72,40 @@ function drawPinkLine(){
 }
 
 
+class Bomb {
+
+  constructor() {
+    this.xx = 8
+    this.pic = new Image()
+    this.pic.src = './images/bomb.png'
+  }
+
+  draw(canvas, ctx) {
+    ctx.drawImage(this.pic,this.xx,809,canvas.width/13, canvas.height/10);
+  }
+
+  moveBomb(canvas){
+    if(this.xx > canvas.width){
+      this.xx =8;
+    } else {
+      this.xx += 7;
+    }
+  }
+
+  moveBomb2(canvas){
+    if(this.xx < -10){
+      this.xx =canvas.width;
+    } else {
+      this.xx -= 6;
+    }
+  }
+}
+
+const bomb1 = new Bomb();
+const bomb2 = new Bomb();
+
+// const pinkLine = new PinkLine();
+// pinkLine.draw(ctx)
 
 function draw(){
   ctx.clearRect(0,0,canvas.width, canvas.height);
@@ -81,9 +116,11 @@ function draw(){
   drawScore();
   drawPinkLine();
   bomb1.draw(canvas, ctx);
-  bomb1.xx += 8;
+  bomb1.moveBomb(canvas);
+
   bomb2.draw(canvas, ctx);
-  bomb2.xx += 18;
+  bomb2.moveBomb2(canvas);
+
   drawMagnet();
   y += dy;
   rectHeight -= 8;
@@ -154,34 +191,21 @@ function drawBricks() {
   }
 }
 
-class Bomb {
 
-  constructor() {
-    this.xx = 8
-    this.pic = new Image()
-    this.pic.src = './images/bomb.png'
-  }
 
-  draw(canvas, ctx) {
-    ctx.drawImage(this.pic,this.xx,809,canvas.width/13, canvas.height/10);
-  }
 
-}
 
-const bomb1 = new Bomb();
-const bomb2 = new Bomb();
-
-var xx = 0;
-function drawBomb(){
-var pic = new Image();
-pic.src = "./images/bomb.png";
-ctx.drawImage(pic,xx,809,canvas.width/13, canvas.height/10);
-xx+= 8;
-if (xx >=canvas.width){
-  xx = 8
-  // ctx.drawImage(pic,xx,809,canvas.width/13, canvas.height/10);
-}
-}
+// var xx = 0;
+// function drawBomb(){
+// var pic = new Image();
+// pic.src = "./images/bomb.png";
+// ctx.drawImage(pic,xx,809,canvas.width/13, canvas.height/10);
+// xx+= 8;
+// if (xx >=canvas.width){
+//   xx = 8
+//   // ctx.drawImage(pic,xx,809,canvas.width/13, canvas.height/10);
+// }
+// }
 
 
 
