@@ -184,7 +184,6 @@ function collisionDetection() {
               b.y -=2;
               if(b.y <= 100){
                 b.status = 0;
-                // my = y;
               }
           }
         }
