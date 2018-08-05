@@ -71,6 +71,7 @@ function drawPinkLine(){
 }
 
 
+
 function draw(){
   ctx.clearRect(0,0,canvas.width, canvas.height);
   drawLine();
@@ -79,7 +80,10 @@ function draw(){
   collisionDetection();
   drawScore();
   drawPinkLine();
-  drawBomb();
+  bomb1.draw(canvas, ctx);
+  bomb1.xx += 8;
+  bomb2.draw(canvas, ctx);
+  bomb2.xx += 18;
   drawMagnet();
   y += dy;
   rectHeight -= 8;
@@ -150,15 +154,33 @@ function drawBricks() {
   }
 }
 
-var xx = -1;
+class Bomb {
+
+  constructor() {
+    this.xx = 8
+    this.pic = new Image()
+    this.pic.src = './images/bomb.png'
+  }
+
+  draw(canvas, ctx) {
+    ctx.drawImage(this.pic,this.xx,809,canvas.width/13, canvas.height/10);
+  }
+
+}
+
+const bomb1 = new Bomb();
+const bomb2 = new Bomb();
+
+var xx = 0;
 function drawBomb(){
 var pic = new Image();
 pic.src = "./images/bomb.png";
 ctx.drawImage(pic,xx,809,canvas.width/13, canvas.height/10);
-  xx+= 1;
-  if (pic.xx == canvas.width){
-    pic.xx == 0
-  }
+xx+= 8;
+if (xx >=canvas.width){
+  xx = 8
+  // ctx.drawImage(pic,xx,809,canvas.width/13, canvas.height/10);
+}
 }
 
 
