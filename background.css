@@ -60,3 +60,10 @@
   color: #ff5b51;
   text-shadow: 4px 4px 4px white;
 }
+
+.music{
+position:fixed;
+flex-direction: column;
+padding-bottom: 1000px;
+font-size: 10px;
+}
