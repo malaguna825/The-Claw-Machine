@@ -55,26 +55,6 @@ class Circle {
       ctx.closePath();
     }
 
-    moveCircle1(canvas){
-      if(this.x > canvas.width){
-        this.x =8;
-      } else {
-        this.x += 5;
-      }
-    }
-
-    moveCircle2(canvas){
-      if(this.x< -10){
-        this.x =canvas.width;
-      } else {
-        this.x -= 4;
-      }
-    }
-  }
-
-
-
-
   moveCircle(canvas){
     if(this.x + this.vx > canvas.width-this.radius || this.x + this.vx < this.radius) {
         this.vx = -this.vx;

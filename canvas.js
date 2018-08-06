@@ -110,7 +110,6 @@ class Circle {
     this.y = y;
     this.radius = radius;
     this.color = color;
-
     this.vx=vx
     this.vy=vy
   }
@@ -128,11 +127,9 @@ class Circle {
     if(this.x + this.vx > canvas.width-this.radius || this.x + this.vx < this.radius) {
         this.vx = -this.vx;
     }
-    if(this.y + this.vy > canvas.height-this.radius || this.y + this.vy < canvas.height-150) {
-
+    if(this.y + this.vy > canvas.height-this.radius || this.y + this.vy < canvas.height-125) {
         this.vy = -this.vy;
     }
-
     this.x += this.vx;
     this.y += this.vy;
   }
@@ -141,8 +138,8 @@ class Circle {
 }
 
 const circle1 = new Circle(Math.random()*innerWidth/2, 800, 20, "red",2,1)
-const circle2 = new Circle(Math.random()*innerWidth/2, 850, 30, "blue",1,3)
-const circle3 = new Circle(Math.random()*innerWidth/2, 750, 15, "blue",2,1)
+const circle2 = new Circle(Math.random()*innerWidth/2, 850, 30, "blue",1,2)
+const circle3 = new Circle(Math.random()*innerWidth/2, 810, 25  , "blue",1,1)
 
 
 
@@ -171,11 +168,13 @@ function draw(){
 
   drawMagnet();
 
-
   y += dy;
   rectHeight -= 8;
   if(y+dy< 0){
     dy = 0;
+
+  } else if(my+dy>canvas.height-145){
+    dy = -2
   }
 
 
@@ -260,7 +259,7 @@ function collisionDetection() {
               ctx.fill();
               ctx.closePath();
               b.y -=2;
-              if(b.y <= 100){
+              if(b.y <= 125){
                 b.status = 0;
               }
           }
