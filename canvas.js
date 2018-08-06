@@ -133,8 +133,6 @@ class Circle {
     this.x += this.vx;
     this.y += this.vy;
   }
-
-
 }
 
 const circle1 = new Circle(Math.random()*innerWidth/2, 800, 20, "red",2,1)
@@ -178,11 +176,11 @@ function draw(){
   }
 
 
-  if(rightPressed && paddleX < canvas.width-paddleWidth) {
+  if(rightPressed && paddleX < canvas.width-paddleWidth && y <=45) {
     paddleX += 7;
     x += 7
   }
-  else if (leftPressed && paddleX > 150) {
+  else if (leftPressed && paddleX > 150 && y<=45) {
     paddleX -= 7;
     x -= 7
   }
@@ -201,6 +199,7 @@ function keyDownHandler(e) {
   }
   else if(e.keyCode == 32 && y <= 24) {
     dy = 2;
+
   }
 }
 
