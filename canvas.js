@@ -56,7 +56,7 @@ function drawLine(){
 function drawMagnet(){
   var pic1 = new Image();
   pic1.src = "./images/magnet.png";
-  ctx.drawImage(pic1, paddleX-35,my+90,canvas.width/20, canvas.height/13);
+  ctx.drawImage(pic1, paddleX-34,my+90,canvas.width/20, canvas.height/13);
   my += dy;
   if(my+dy< 0){
     dy = 0;
@@ -88,7 +88,7 @@ class Bomb {
     if(this.xx > canvas.width){
       this.xx =8;
     } else {
-      this.xx += 7;
+      this.xx += 2;
     }
   }
 
@@ -96,7 +96,7 @@ class Bomb {
     if(this.xx < -10){
       this.xx =canvas.width;
     } else {
-      this.xx -= 6;
+      this.xx -= 4;
     }
   }
 }
@@ -104,8 +104,47 @@ class Bomb {
 const bomb1 = new Bomb();
 const bomb2 = new Bomb();
 
-// const pinkLine = new PinkLine();
-// pinkLine.draw(ctx)
+class Circle {
+  constructor(x, y, radius, color, vx,vy){
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+    this.color = color;
+
+    this.vx=vx
+    this.vy=vy
+  }
+
+
+  draw(ctx){
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+    ctx.fillStyle = this.color;
+    ctx.fill();
+    ctx.closePath();
+  }
+
+  moveCircle(canvas){
+    if(this.x + this.vx > canvas.width-this.radius || this.x + this.vx < this.radius) {
+        this.vx = -this.vx;
+    }
+    if(this.y + this.vy > canvas.height-this.radius || this.y + this.vy < canvas.height-150) {
+
+        this.vy = -this.vy;
+    }
+
+    this.x += this.vx;
+    this.y += this.vy;
+  }
+
+
+}
+
+const circle1 = new Circle(Math.random()*innerWidth/2, 800, 20, "red",2,1)
+const circle2 = new Circle(Math.random()*innerWidth/2, 850, 30, "blue",1,3)
+const circle3 = new Circle(Math.random()*innerWidth/2, 750, 15, "blue",2,1)
+
+
 
 function draw(){
   ctx.clearRect(0,0,canvas.width, canvas.height);
@@ -121,7 +160,18 @@ function draw(){
   bomb2.draw(canvas, ctx);
   bomb2.moveBomb2(canvas);
 
+  circle1.draw(ctx);
+  circle1.moveCircle(canvas);
+
+  circle2.draw(ctx);
+  circle2.moveCircle(canvas);
+
+  circle3.draw(ctx);
+  circle3.moveCircle(canvas);
+
   drawMagnet();
+
+
   y += dy;
   rectHeight -= 8;
   if(y+dy< 0){
@@ -190,24 +240,6 @@ function drawBricks() {
     }
   }
 }
-
-
-
-
-
-// var xx = 0;
-// function drawBomb(){
-// var pic = new Image();
-// pic.src = "./images/bomb.png";
-// ctx.drawImage(pic,xx,809,canvas.width/13, canvas.height/10);
-// xx+= 8;
-// if (xx >=canvas.width){
-//   xx = 8
-//   // ctx.drawImage(pic,xx,809,canvas.width/13, canvas.height/10);
-// }
-// }
-
-
 
 function collisionDetection() {
     for(var c=0; c<brickColumnCount; c++) {
