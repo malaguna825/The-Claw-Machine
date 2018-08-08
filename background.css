@@ -114,3 +114,13 @@ body{
   text-decoration: none;
   cursor: pointer;
 }
+
+.author{
+  position:absolute;
+  padding-top: 1250px;
+  font-family: 'Slabo 13px', serif;
+  font-size: 30px;
+  text-align: center;
+  font-weight:lighter;
+  color: #ff5b51;
+}
