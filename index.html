@@ -3,13 +3,15 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <title>The Claw Machine</title>
     <link href="https://fonts.googleapis.com/css?family=Slabo+13px" rel="stylesheet">
     <link rel="stylesheet" href="background.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <title>The Claw Machine</title>
   </head>
   <body class='main-background'>
-    <canvas class='canvas'></canvas>
+
+
+    <canvas class="canvas" id="canvas" ></canvas>
     <div class="links">
       <a href="https://github.com/malaguna825" target="_blank">
         <i class="fab fa-github"></i>
@@ -20,8 +22,23 @@
       <i class="fab fa-angellist"></i>
     </div>
     <p class='game-name'>The Claw Machine</p>
-    <script src="./lib/bundle.js"></script>
-    <audio class='music' src="shape.mp3" controls/>
+    <audio class='music' src="shape.mp3" controls></audio>
 
+    <!-- <button id="start" name="button">start</button>
+    <button type="button" name="button" id="reset">Reset</button>
+
+
+    <button id="modalBtn" class="button"> ClickHere </button>
+
+    <div id="simpleModal" class="modal">
+      <div class="modal-content">
+        <span class="closeBtn">&times;</span>
+        <p>hello world</p>
+
+      </div>
+    </div> -->
+
+
+    <script src="./lib/bundle.js"></script>
   </body>
 </html>
