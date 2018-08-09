@@ -329,7 +329,7 @@ function drawScore(){
   ctx.closePath();
   ctx.font = 'bold 23px Arial';
   ctx.fillStyle = "white";
-  ctx.fillText("Your score:" + score,29,360);
+  ctx.fillText("Score:" + score,29,360);
   ctx.font = 'bold 23px Arial';
   ctx.fillText(timeLeft + " s", 29, 415);
 }
@@ -383,7 +383,7 @@ function timesUp(){
 
   ctx.font = 'bold 35px Arial';
   ctx.fillStyle = "white";
-  ctx.fillText("Score:" + score,652,545);
+  ctx.fillText("Your Score:" + score,652,545);
 }
 
 document.addEventListener('keydown', e => playSound(e));
