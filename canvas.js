@@ -378,12 +378,12 @@ function timesUp(){
   ctx.strokeText('Time\'s Up!',500, canvas.height/3);
   ctx.font = "34px Comic Sans MS";
   ctx.lineWidth = 2;
-  ctx.strokeText("<Press Enter To Play Again>",508,402)
+  ctx.strokeText("<Press Enter To Play Again>",505,402)
 
 
   ctx.font = 'bold 35px Arial';
   ctx.fillStyle = "white";
-  ctx.fillText("Your Score:" + score,652,545);
+  ctx.fillText("Your Score:" + score,617,545);
 }
 
 document.addEventListener('keydown', e => playSound(e));
