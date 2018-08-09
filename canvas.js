@@ -9,7 +9,6 @@ canvas.height = 880;
 
 let ctx = canvas.getContext('2d');
 
-
 let paddleHeight = 50;
 let paddleWidth = 100;
 let paddleX = (canvas.width-paddleWidth)/2;
@@ -34,8 +33,6 @@ let brickOffsetTop = 823;
 let brickOffsetLeft = 122;
 
 let score = 0;
-
-
 
 function reset(){
 
@@ -73,8 +70,6 @@ function reset(){
   circle2.inplay = true;
   circle3.inplay = true;
   timeLeft = 45;
-
-
 }
 
 
@@ -85,7 +80,6 @@ function drawPaddle(){
   ctx.fill();
   ctx.closePath();
 }
-
 
 
 var rectHeight = 0;
@@ -139,7 +133,6 @@ function countdown() {
   if (timeLeft == 0) {
     timesUp();
   } else {
-    // timeLeft + ' seconds remaining';
     timeLeft--;
   }
 }
@@ -151,7 +144,7 @@ function draw(){
   }
 
   if (!doAnimation) {
-    timesUp(); // draws the timesUp onto canvas
+    timesUp();
     started = false
   } else {
     ctx.clearRect(0,0,canvas.width, canvas.height);
