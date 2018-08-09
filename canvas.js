@@ -93,7 +93,8 @@ function drawLine(){
   ctx.closePath();
 }
 
-
+let touch = new Audio();
+touch.src = "./images/touch.mp3"
 function drawMagnet(){
   var pic1 = new Image();
   pic1.src = "./images/magnet.png";
@@ -101,6 +102,8 @@ function drawMagnet(){
   my += dy;
   if(my+dy< 0){
     dy = 0;
+    touch.play();
+
   }
 }
 
@@ -137,6 +140,8 @@ function countdown() {
   }
 }
 
+let youwin = new Audio();
+youwin.src = "./images/youwin.mp3"
 function draw(){
   if (countdownStarted === false) {
     timerId;
@@ -145,6 +150,8 @@ function draw(){
 
   if (!doAnimation) {
     timesUp();
+    youwin.play()
+
     started = false
   } else {
     ctx.clearRect(0,0,canvas.width, canvas.height);
@@ -366,6 +373,8 @@ function drawStart(){
   ctx.lineWidth = 3;
   ctx.strokeText('Press Enter to Start',340, canvas.height/2);
 }
+
+
 
 function timesUp(){
   countdownStarted = false;
