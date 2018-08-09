@@ -214,7 +214,7 @@ document.addEventListener("keyup", keyUpHandler, false);
 
 
 function keyDownHandler(e) {
-  e.preventDefault();
+  // e.preventDefault();
 
   if(e.keyCode ==39) {
     rightPressed = true;
