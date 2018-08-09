@@ -198,19 +198,16 @@ function drawBricks() {
 }
 
 function collisionDetection() {
-  // debugger
+  
   if(x > circle1.x && x < circle1.x + 60 && y + 67 > circle1.y - 50  && y + 100 < circle1.y + 50 && dy > 0) {
-    debugger
   dy = -dy;
   score += 15;
 
 } else if(x > circle2.x && x < circle2.x + 39 && y + 46 > circle2.y - 50  && y + 100 < circle2.y + 50 && dy > 0) {
-  debugger
   dy = -dy;
 
   score += 6;
 } else if(x > circle3.x && x < circle3.x + 65 && y + 72 > circle3.y - 50  && y + 100 < circle3.y + 50 && dy > 0) {
-  debugger
   dy = -dy;
 
   score += 20;

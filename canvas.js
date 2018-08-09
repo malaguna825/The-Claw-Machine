@@ -2,7 +2,7 @@ import Bomb from "./lib/bomb";
 import Circle from "./lib/circle";
 import $ from "jquery";
 
-
+let countdownStarted = false;
 let canvas = document.querySelector('canvas');
 canvas.width = 1440;
 canvas.height = 880;
@@ -19,7 +19,6 @@ let y = 24;
 let dy= 0;
 let ballRadius = 25;
 
-let mx = 635;
 let my = 16;
 
 let rightPressed = false;
@@ -33,41 +32,49 @@ let brickHeight = 20;
 let brickPadding = 44;
 let brickOffsetTop = 823;
 let brickOffsetLeft = 122;
+
 let score = 0;
+
+
 
 function reset(){
 
-  for(var c=0; c<brickColumnCount; c++) {
+  for(let c=0; c<brickColumnCount; c++) {
     bricks[c] = [];
-    for(var r=0; r<brickRowCount; r++) {
+    for(let r=0; r<brickRowCount; r++) {
       bricks[c][r] = { x: 0, y: 0, status: 1 };
     }
   }
 
- paddleHeight = 50;
- paddleWidth = 100;
- paddleX = (canvas.width-paddleWidth)/2;
+  paddleHeight = 50;
+  paddleWidth = 100;
+  paddleX = (canvas.width-paddleWidth)/2;
 
- x = paddleX;
- y = 24;
- dy= 0;
- ballRadius = 25;
+  x = paddleX;
+  y = 24;
+  dy= 0;
+  ballRadius = 25;
 
- mx = 635;
- my = 16;
+  my = 16;
 
- rightPressed = false;
- leftPressed = false;
- downPressed = false;
+  rightPressed = false;
+  leftPressed = false;
+  downPressed = false;
 
- brickRowCount = 1;
- brickColumnCount = 22;
- brickWidth = 30;
- brickHeight = 20;
- brickPadding = 44;
- brickOffsetTop = 823;
- brickOffsetLeft = 122;
- score = 0;
+  brickRowCount = 1;
+  brickColumnCount = 22;
+  brickWidth = 30;
+  brickHeight = 20;
+  brickPadding = 44;
+  brickOffsetTop = 823;
+  brickOffsetLeft = 122;
+  score = 0;
+  circle1.inplay = true;
+  circle2.inplay = true;
+  circle3.inplay = true;
+  timeLeft = 45;
+
+
 }
 
 
@@ -122,12 +129,30 @@ const circle1 = new Circle(Math.random()*innerWidth/2, 800, 2, 1,'./images/ball1
 const circle2 = new Circle(Math.random()*innerWidth/2, 850, 1, 2, './images/ball6.png',34,34)
 const circle3 = new Circle(Math.random()*innerWidth/2, 810, 1, 1, './images/ball20.png',60,60)
 
+////////////
 
+let timeLeft;
+
+let timerId = setInterval(countdown, 1000);
+
+function countdown() {
+  if (timeLeft == 0) {
+    timesUp();
+  } else {
+    // timeLeft + ' seconds remaining';
+    timeLeft--;
+  }
+}
 
 function draw(){
+  if (countdownStarted === false) {
+    timerId;
+    countdownStarted = true;
+  }
+
   if (!doAnimation) {
     timesUp(); // draws the timesUp onto canvas
-  started = false
+    started = false
   } else {
     ctx.clearRect(0,0,canvas.width, canvas.height);
     drawLine();
@@ -137,6 +162,7 @@ function draw(){
     drawPinkLine();
     requestAnimationFrame(draw);
 
+
     bomb1.draw(canvas, ctx);
     bomb1.moveBomb(canvas);
 
@@ -145,15 +171,20 @@ function draw(){
 
     bomb3.draw(canvas, ctx);
     bomb3.moveBomb3(canvas);
+    if(circle1.inplay){
+      circle1.draw(ctx);
+      circle1.moveCircle(canvas);
+    }
 
-    circle1.draw(ctx);
-    circle1.moveCircle(canvas);
+    if(circle2.inplay){
+      circle2.draw(ctx);
+      circle2.moveCircle(canvas);
+    }
 
-    circle2.draw(ctx);
-    circle2.moveCircle(canvas);
-
-    circle3.draw(ctx);
-    circle3.moveCircle(canvas);
+    if(circle3.inplay){
+      circle3.draw(ctx);
+      circle3.moveCircle(canvas);
+    }
     collisionDetection();
 
     drawMagnet();
@@ -167,12 +198,11 @@ function draw(){
       dy = -4
     }
 
-
-    if(rightPressed && paddleX < canvas.width-paddleWidth ) {//&& y <=45) {
+    if(rightPressed && paddleX < canvas.width-paddleWidth && y <=45) {
       paddleX += 7;
       x += 7
     }
-    else if (leftPressed && paddleX > 150 ) {//&& y<=45) {
+    else if (leftPressed && paddleX > 150 && y<=45) {
       paddleX -= 7;
       x -= 7
     }
@@ -231,27 +261,32 @@ function drawBricks() {
   }
 }
 
+let ball = new Audio();
+ball.src = "./images/ball.mp3"
+
+let ball2 = new Audio();
+ball2.src = "./images/ball2.mp3"
+
 function collisionDetection() {
-  // debugger
+
   if(x > circle1.x && x < circle1.x + 60 && y + 67 > circle1.y - 50  && y + 100 < circle1.y + 50 && dy > 0) {
-    debugger
-  dy = -dy;
-  score += 15;
-
-} else if(x > circle2.x && x < circle2.x + 39 && y + 46 > circle2.y - 50  && y + 100 < circle2.y + 50 && dy > 0) {
-  debugger
-  dy = -dy;
-
-  score += 6;
-} else if(x > circle3.x && x < circle3.x + 65 && y + 72 > circle3.y - 50  && y + 100 < circle3.y + 50 && dy > 0) {
-  debugger
-  dy = -dy;
-
-  score += 20;
-}
+    dy = -dy;
+    score += 15;
+    circle1.inplay = false;
+    ball2.play();
+  } else if(x > circle2.x && x < circle2.x + 39 && y + 46 > circle2.y - 50  && y + 100 < circle2.y + 50 && dy > 0) {
+    dy = -dy;
+    circle2.inplay = false;
+    ball2.play();
+    score += 6;
+  } else if(x > circle3.x && x < circle3.x + 65 && y + 72 > circle3.y - 50  && y + 100 < circle3.y + 50 && dy > 0) {
+    dy = -dy;
+    circle3.inplay = false;
+    ball2.play();
+    score += 20;
+  }
 
   if(x-20 > bomb1.xx - 20 && x-20 < bomb1.xx + 20 && y + 20 > bomb1.y - 90  && y + 20 < bomb1.y + 90 && dy > 0) {
-
     alert("GAME OVER");
     started = false
     document.location.reload();
@@ -277,6 +312,7 @@ function collisionDetection() {
           b.status = 2;
           dy = -dy;
           score += 4;
+          ball.play();
         }
       }else if (b.status == 2 ){
         var pic3 = new Image();
@@ -293,9 +329,16 @@ function collisionDetection() {
 
 
 function drawScore(){
-  ctx.font = 'bold 38px Arial';
-  ctx.fillStyle = "rgb(10, 101, 228)";
-  ctx.fillText("Score:" + score,20,60)
+  ctx.beginPath();
+  ctx.rect(14, 320, 121,120);
+  ctx.fillStyle ='grey';
+  ctx.fill();
+  ctx.closePath();
+  ctx.font = 'bold 23px Arial';
+  ctx.fillStyle = "white";
+  ctx.fillText("Score:" + score,29,360);
+  ctx.font = 'bold 23px Arial';
+  ctx.fillText(timeLeft + " s", 29, 415);
 }
 
 
@@ -303,8 +346,8 @@ document.addEventListener('keydown', e => startGame(e));
 
 let started = false;
 let doAnimation;
-function startGame(e) {
 
+function startGame(e) {
   if (e.key === "Enter" && started === false){
     reset();
     started = true;
@@ -312,24 +355,12 @@ function startGame(e) {
     draw();
     setTimeout(function() {
       doAnimation = false;
-    }, 6000)
+    }, 45000)
   }
 }
 
 
 function drawStart(){
-  ctx.beginPath();
-    ctx.rect(-3, -3, 1460, 892);
-    ctx.fillStyle = '#FFB6C1';
-    ctx.fill();
-    ctx.lineWidth = 7;
-    ctx.strokeStyle = 'white';
-  ctx.font = '98px serif';
-  ctx.lineWidth = 3;
-  ctx.strokeText('Press Enter to Start',canvas.width/4, canvas.height/2);
-}
-
-function timesUp(){
   ctx.beginPath();
   ctx.rect(-3, -3, 1460, 892);
   ctx.fillStyle = '#FFB6C1';
@@ -338,10 +369,44 @@ function timesUp(){
   ctx.strokeStyle = 'white';
   ctx.font = '98px serif';
   ctx.lineWidth = 3;
-  ctx.strokeText('Time\'s Up!',500, canvas.height/2);
-  ctx.font = "30px Comic Sans MS";
+  ctx.strokeText('Press Enter to Start',340, canvas.height/2);
+}
+
+function timesUp(){
+  countdownStarted = false;
+  ctx.beginPath();
+  ctx.rect(-3, -3, 1460, 892);
+  ctx.fillStyle = '#FFB6C1';
+  ctx.fill();
+  ctx.lineWidth = 7;
+  ctx.strokeStyle = 'white';
+  ctx.font = '98px serif';
+  ctx.lineWidth = 3;
+  ctx.strokeText('Time\'s Up!',500, canvas.height/3);
+  ctx.font = "34px Comic Sans MS";
   ctx.lineWidth = 2;
-  ctx.strokeText("<Press Enter To Play Again>",515,530)
+  ctx.strokeText("<Press Enter To Play Again>",508,402)
+
+
+  ctx.font = 'bold 35px Arial';
+  ctx.fillStyle = "white";
+  ctx.fillText("Score:" + score,652,545);
+}
+
+document.addEventListener('keydown', e => playSound(e));
+
+let arrowButton = new Audio();
+arrowButton.src = "./images/arrowButton.mp3"
+let spaceKey = new Audio();
+spaceKey.src = "./images/spaceKey.mp3"
+function playSound(e) {
+  if (e.keyCode == 37){
+    arrowButton.play()
+  } else if (e.keyCode == 39){
+    arrowButton.play()
+  }else if (e.keyCode == 32){
+    spaceKey.play()
+  }
 }
 
 drawStart();
