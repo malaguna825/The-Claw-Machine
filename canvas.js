@@ -260,6 +260,9 @@ ball.src = "./images/ball.mp3"
 let ball2 = new Audio();
 ball2.src = "./images/ball2.mp3"
 
+let bomb = new Audio();
+bomb.src = "./images/bomb.mp3"
+
 function collisionDetection() {
 
   if(x > circle1.x && x < circle1.x + 60 && y + 67 > circle1.y - 50  && y + 100 < circle1.y + 50 && dy > 0) {
@@ -280,21 +283,20 @@ function collisionDetection() {
   }
 
   if(x-20 > bomb1.xx - 20 && x-20 < bomb1.xx + 20 && y + 20 > bomb1.y - 90  && y + 20 < bomb1.y + 90 && dy > 0) {
+    bomb.play();
     alert("GAME OVER");
     started = false
     document.location.reload();
   } else if (x-20 > bomb2.xx - 20 && x-20 < bomb2.xx + 20 && y + 20 > bomb2.y - 90  && y + 20 < bomb2.y + 90 && dy > 0) {
-
+    bomb.play();
     alert("GAME OVER");
     started = false;
     document.location.reload();
-
   } else if (x-20 > bomb3.xx - 20 && x-20 < bomb3.xx + 20 && y + 20 > bomb3.y - 90  && y + 20 < bomb3.y + 90 && dy > 0) {
-
+    bomb.play();
     alert("GAME OVER");
     started = false;
     document.location.reload();
-
   }
 
   for(var c=0; c<brickColumnCount; c++) {
