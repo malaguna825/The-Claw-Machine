@@ -191,11 +191,11 @@ function draw(){
       dy = -4
     }
 
-    if(rightPressed && paddleX < canvas.width-paddleWidth && y <=45) {
+    if(rightPressed && paddleX < canvas.width-paddleWidth) {
       paddleX += 7;
       x += 7
     }
-    else if (leftPressed && paddleX > 150 && y<=45) {
+    else if (leftPressed && paddleX > 150 ) {
       paddleX -= 7;
       x -= 7
     }
