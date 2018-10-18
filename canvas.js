@@ -369,11 +369,19 @@ function drawStart(){
   ctx.fill();
   ctx.lineWidth = 7;
   ctx.strokeStyle = 'white';
-  ctx.font = '98px serif';
+  ctx.font = '120px serif';
   ctx.lineWidth = 3;
-  ctx.strokeText('Press Enter to Start',340, canvas.height/2);
-}
+  ctx.strokeText('Press Enter to Start',260, canvas.height/4);
 
+  ctx.fillStyle = 'white';
+  ctx.font = '38px Arial';
+  ctx.fillText('- A player has 45 seconds to grab as many balls as possible',190, canvas.height/2.5);
+  ctx.fillText('- The game will terminate immediately if the claw touches the bomb',190, canvas.height/1.9);
+  ctx.fillText('- Press Left or Right arrow key to move the magnet horizontally',190, canvas.height/1.5);
+  ctx.fillText('- Press Space key to drop the magnet',190, canvas.height/1.25);
+
+
+}
 
 
 function timesUp(){
