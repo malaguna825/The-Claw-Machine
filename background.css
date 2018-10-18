@@ -88,3 +88,7 @@ font-size: 10px;
   font-weight:lighter;
   color: white;
 }
+
+.scale {
+  transform: scale(0.6)
+}
